@@ -1,0 +1,11 @@
+name: Dependency Scan Stand-in
+
+on:
+  workflow_dispatch:
+
+jobs:
+  scan-standin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simulate long-running dependency scan
+        run: sleep 1200
