@@ -1,0 +1,13 @@
+name: Drill CI
+
+on:
+  pull_request:
+
+jobs:
+  drill-fail:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simulate failed security remediation check
+        run: |
+          echo "Drill CI: this step deliberately exits non-zero so the exercise has a red check to react to."
+          exit 1
