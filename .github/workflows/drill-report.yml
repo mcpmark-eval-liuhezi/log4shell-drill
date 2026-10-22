@@ -1,0 +1,33 @@
+name: Drill Report
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  drill-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate drill report
+        run: |
+          echo "Log4Shell dependency-security drill report" > drill-report.txt
+          echo "Generated: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> drill-report.txt
+          echo "Repository: ${GITHUB_REPOSITORY}" >> drill-report.txt
+          echo "Commit: ${GITHUB_SHA}" >> drill-report.txt
+          echo "log4j-core dependency declared in pom.xml:" >> drill-report.txt
+          grep -A 3 'log4j-core' pom.xml >> drill-report.txt || echo "log4j-core not found" >> drill-report.txt
+          echo "---" >> drill-report.txt
+          cat drill-report.txt
+
+      - name: Upload drill report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: drill-report
+          path: drill-report.txt
