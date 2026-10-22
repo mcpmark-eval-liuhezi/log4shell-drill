@@ -16,16 +16,17 @@
   </properties>
 
   <dependencies>
-    <!-- Vulnerable: inside the advisory's affected range (< 2.15.0) for CVE-2021-44228 / GHSA-jfh8-c2jp-5v3q -->
+    <!-- Patched: first patched version for CVE-2021-44228 / GHSA-jfh8-c2jp-5v3q per the GitHub advisory record -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
-      <version>2.14.1</version>
+      <version>2.15.0</version>
     </dependency>
+    <!-- log4j-api kept at the same version as log4j-core per the advisory's compatibility note -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api</artifactId>
-      <version>2.14.1</version>
+      <version>2.15.0</version>
     </dependency>
   </dependencies>
 </project>
